@@ -1,0 +1,392 @@
+```html
+<style>
+    /* Reset y configuración base */
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #5D4037; /* Texto Principal - Marrón oscuro */
+        background: linear-gradient(135deg, #CC7722 0%, #E2725B 100%); /* Ocre y Terracota */
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    /* Contenedor principal de éxito */
+    .success-container {
+        background: rgba(245, 245, 220, 0.95); /* Beige con transparencia */
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(210, 180, 140, 0.5); /* Arena con transparencia */
+        padding: 3rem 2rem;
+        border-radius: 24px;
+        text-align: center;
+        color: #5D4037; /* Texto Principal */
+        margin: 2rem auto;
+        max-width: 600px;
+        box-shadow:
+            0 25px 50px rgba(93, 64, 55, 0.15), /* Sombra con texto principal */
+            0 0 0 1px rgba(245, 245, 220, 0.05); /* Borde sutil con beige */
+        position: relative;
+        overflow: hidden;
+    }
+    .success-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #CC7722, #E2725B, #D2B48C, #CC7722); /* Colores de la paleta tierra */
+        background-size: 200% 100%;
+        animation: rainbow 3s linear infinite;
+    }
+    @keyframes rainbow {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+    }
+    /* Icono de éxito */
+    .success-icon {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+        animation: successPulse 2s ease-in-out infinite;
+        text-shadow: 0 5px 15px rgba(93, 64, 55, 0.1); /* Sombra con texto principal */
+        color: #CC7722; /* Ocre */
+    }
+    @keyframes successPulse {
+        0%, 100% {
+            transform: scale(1);
+            filter: drop-shadow(0 0 10px rgba(204, 119, 34, 0.3)); /* Sombra con Ocre */
+        }
+        50% {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 20px rgba(204, 119, 34, 0.6)); /* Sombra más intensa */
+        }
+    }
+    /* Títulos */
+    .success-container h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0 0 1rem 0;
+        background: linear-gradient(135deg, #CC7722 0%, #E2725B 100%); /* Ocre y Terracota */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: none;
+    }
+    .success-container p {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        opacity: 0.8;
+        color: #8D6E63; /* Texto Secundario - Marrón medio */
+    }
+    /* Detalles del pedido */
+    .order-details {
+        background: rgba(245, 245, 220, 0.9); /* Beige con transparencia */
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(210, 180, 140, 0.6); /* Arena con transparencia */
+        padding: 2.5rem;
+        border-radius: 20px;
+        margin: 2rem auto;
+        max-width: 800px;
+        box-shadow:
+            0 20px 40px rgba(93, 64, 55, 0.1), /* Sombra con texto principal */
+            inset 0 1px 0 rgba(245, 245, 220, 0.6); /* Brillo interno con beige */
+        position: relative;
+    }
+    .order-details h2 {
+        color: #5D4037; /* Texto Principal */
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #D2B48C; /* Arena */
+        position: relative;
+    }
+    .order-details h2::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, #CC7722, #E2725B); /* Ocre y Terracota */
+        border-radius: 2px;
+    }
+    .order-details h3 {
+        color: #5D4037; /* Texto Principal */
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 2rem 0 1rem 0;
+    }
+    /* Resumen del pedido */
+    .order-summary {
+        background: linear-gradient(135deg, #D2B48C 0%, #F5F5DC 100%); /* Arena y Beige */
+        padding: 2rem;
+        color: #5D4037; /* Texto Principal */
+        border-radius: 16px;
+        margin: 1.5rem 0;
+        border-left: 4px solid #CC7722; /* Ocre */
+        box-shadow: 0 8px 25px rgba(93, 64, 55, 0.08); /* Sombra con texto principal */
+        position: relative;
+        overflow: hidden;
+    }
+    .order-summary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(204, 119, 34, 0.3), transparent); /* Transparente a Ocre */
+    }
+    .order-summary strong {
+        color: #5D4037; /* Texto Principal */
+        font-weight: 600;
+    }
+    /* Items del pedido */
+    .order-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        margin: 0.5rem 0;
+        background: rgba(245, 245, 220, 0.7); /* Beige con transparencia */
+        border-radius: 12px;
+        border: 1px solid rgba(210, 180, 140, 0.3); /* Arena con transparencia */
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        color: #5D4037; /* Texto Principal */
+    }
+    .order-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(245, 245, 220, 0.4), transparent); /* Brillo con Beige */
+        transition: left 0.6s ease;
+    }
+    .order-item:hover::before {
+        left: 100%;
+    }
+    .order-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(93, 64, 55, 0.1); /* Sombra más intensa al pasar el mouse */
+    }
+    .order-item div:first-child {
+        flex: 1;
+    }
+    .order-item div:first-child strong {
+        font-size: 1.1rem;
+        color: #5D4037; /* Texto Principal */
+        font-weight: 600;
+    }
+    .order-item div:first-child small {
+        color: #8D6E63; /* Texto Secundario */
+        font-size: 0.9rem;
+        display: block;
+        margin-top: 0.5rem;
+    }
+    .order-item div:last-child {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #CC7722; /* Ocre */
+        text-shadow: 0 1px 2px rgba(93, 64, 55, 0.1); /* Sombra con texto principal */
+    }
+    /* Total */
+    .total-amount {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #5D4037; /* Texto Principal */
+        text-align: right;
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #D2B48C 0%, #F5F5DC 100%); /* Arena y Beige */
+        border-radius: 12px;
+        border: 2px solid #CC7722; /* Ocre */
+        position: relative;
+        overflow: hidden;
+    }
+    .total-amount::before {
+        content: '💰';
+        position: absolute;
+        left: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        opacity: 0.6;
+    }
+    /* Botones mejorados */
+    .stButton > button {
+        background: linear-gradient(135deg, #CC7722 0%, #E2725B 100%) !important; /* Ocre y Terracota */
+        color: #F5F5DC !important; /* Beige para texto */
+        border: none !important;
+        padding: 1rem 2.5rem !important;
+        border-radius: 50px !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        text-decoration: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        position: relative !important;
+        overflow: hidden !important;
+        box-shadow: 0 8px 25px rgba(204, 119, 34, 0.3) !important; /* Sombra con Ocre */
+    }
+    .stButton > button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(245, 245, 220, 0.2), transparent); /* Brillo con Beige */
+        transition: left 0.6s ease;
+    }
+    .stButton > button:hover::before {
+        left: 100%;
+    }
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #E2725B 0%, #CC7722 100%) !important; /* Invertido para hover */
+        transform: translateY(-3px) !important;
+        box-shadow: 0 12px 35px rgba(204, 119, 34, 0.4) !important; /* Sombra más intensa al pasar el mouse */
+    }
+    .stButton > button:active {
+        transform: translateY(-1px) !important;
+    }
+    /* Alertas y mensajes */
+    .stSuccess {
+        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%) !important; /* Verde claro para éxito */
+        border: 1px solid #b8dacc !important;
+        border-radius: 12px !important;
+        padding: 1rem 1.5rem !important;
+        margin: 1rem 0 !important;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.1) !important;
+        color: #155724 !important; /* Texto verde oscuro para contraste */
+    }
+    .stInfo {
+        background: linear-gradient(135deg, #D2B48C 0%, #F5F5DC 100%) !important; /* Arena y Beige */
+        border: 1px solid #b8daff !important; /* Puedes cambiar este color si deseas un borde diferente para info */
+        border-radius: 12px !important;
+        padding: 1rem 1.5rem !important;
+        margin: 1rem 0 !important;
+        box-shadow: 0 4px 15px rgba(38, 70, 83, 0.1) !important; /* Sombra con Notificaciones */
+        color: #5D4037 !important; /* Texto Principal */
+    }
+    .stError {
+        background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%) !important; /* Rojo claro para error */
+        border: 1px solid #f1b0b7 !important;
+        border-radius: 12px !important;
+        padding: 1rem 1.5rem !important;
+        margin: 1rem 0 !important;
+        box-shadow: 0 4px 15px rgba(220, 53, 69, 0.1) !important;
+        color: #721c24 !important; /* Texto rojo oscuro para contraste */
+    }
+    /* Información de contacto */
+    .contact-info {
+        background: linear-gradient(135deg, #D2B48C 0%, #F5F5DC 100%); /* Arena y Beige */
+        padding: 2.5rem;
+        border-radius: 20px;
+        text-align: center;
+        margin: 2rem 0;
+        border: 1px solid rgba(210, 180, 140, 0.3); /* Arena con transparencia */
+        box-shadow: 0 10px 30px rgba(93, 64, 55, 0.1); /* Sombra con texto principal */
+    }
+    .contact-info h3 {
+        color: #5D4037; /* Texto Principal */
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+    .contact-info p {
+        color: #8D6E63; /* Texto Secundario */
+        font-size: 1rem;
+        margin: 0.5rem 0;
+    }
+    /* Footer */
+    .footer {
+        text-align: center;
+        padding: 2rem;
+        color: #8D6E63; /* Texto Secundario */
+        font-size: 1.1rem;
+        background: rgba(245, 245, 220, 0.1); /* Beige con muy poca opacidad */
+        border-radius: 15px;
+        margin-top: 2rem;
+        backdrop-filter: blur(10px);
+    }
+    /* Responsivo */
+    @media (max-width: 768px) {
+        .success-container {
+            padding: 2rem 1rem;
+            margin: 1rem;
+        }
+        .success-container h1 {
+            font-size: 2rem;
+        }
+        .success-icon {
+            font-size: 3.5rem;
+        }
+        .order-details {
+            padding: 1.5rem;
+            margin: 1rem;
+        }
+        .order-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .order-item div:last-child {
+            align-self: flex-end;
+        }
+        .total-amount {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .contact-info {
+            padding: 1.5rem;
+            margin: 1rem;
+        }
+    }
+    /* Animaciones adicionales */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .order-details,
+    .success-container {
+        animation: fadeInUp 0.8s ease-out;
+    }
+    /* Efectos de scroll suave */
+    html {
+        scroll-behavior: smooth;
+    }
+    /* Mejoras en la accesibilidad */
+    .stButton > button:focus,
+    .order-item:focus {
+        outline: 3px solid rgba(204, 119, 34, 0.4); /* Ocre con transparencia */
+        outline-offset: 2px;
+    }
+    /* Loading states */
+    .loading-shimmer {
+        background: linear-gradient(90deg, #D2B48C 25%, #F5F5DC 50%, #D2B48C 75%); /* Arena y Beige */
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+    }
+</style>
+```

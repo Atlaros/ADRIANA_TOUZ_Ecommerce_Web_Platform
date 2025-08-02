@@ -1,0 +1,12 @@
+[theme]
+primaryColor="#CC7722" # Ocre
+backgroundColor="#F5F5DC" # Beige
+secondaryBackgroundColor="#D2B48C" # Arena
+textColor="#5D4037" # Texto Principal (Marrón oscuro)
+
+[client]
+showSidebarNavigation = false
+
+[theme.sidebar]
+primaryColor="#CC7722" # Ocre
+secondaryBackgroundColor="#D2B48C" # Arena
