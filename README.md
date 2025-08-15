@@ -2,12 +2,6 @@
 
 Este repositorio contiene la plataforma de comercio electrónico **ADRIANA TOUZ**, una aplicación moderna desarrollada con Streamlit que ofrece una experiencia de compra intuitiva y segura para una marca de moda exclusiva.
 
-## 🚀 Demo en Vivo
-
-Accede a la plataforma desplegada en Streamlit Cloud:
-
-[https://xperience-ecommerce.streamlit.app/](https://xperience-ecommerce.streamlit.app/)
-
 ---
 
 ## ✨ Funcionalidades Principales
